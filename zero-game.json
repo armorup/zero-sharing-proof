@@ -2,7 +2,7 @@
   "schema": 1,
   "kind": "game",
   "slug": "hello-game",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "Zero maintainer sharing proof",
   "description": "Maintainer-owned Hello world fixture for verifying immutable game source sharing. This is not a student submission or gameplay review.",
   "license": "MIT",
