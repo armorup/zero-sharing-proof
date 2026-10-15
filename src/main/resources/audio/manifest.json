@@ -1,0 +1,34 @@
+{
+  "format": "44100 Hz mono 16-bit PCM WAV",
+  "origin": "Original procedural composition and synthesis; tools/generate-audio.py",
+  "assets": [
+    {
+      "file": "sky-hop-loop.wav",
+      "seconds": 17.142857142857142,
+      "bytes": 1512044,
+      "sha256": "21b73afd1510cfc59ec0d3b7f5eb48b932f5a9951c62a9df81ddf449968e24c4",
+      "description": "Original 112 BPM D-major eight-bar bell/chiptune loop, 4/4."
+    },
+    {
+      "file": "flap.wav",
+      "seconds": 0.1,
+      "bytes": 8864,
+      "sha256": "aefaf378b32aa67b8232e93e976e01df0566297026f034bcce92d30578c7c05e",
+      "description": "Short rising bird-like chirp."
+    },
+    {
+      "file": "score.wav",
+      "seconds": 0.32,
+      "bytes": 28268,
+      "sha256": "29862854faaa12a3947efa83d3730c2494c642ead6879c632418e4886784753a",
+      "description": "Bright rising three-note D-major reward."
+    },
+    {
+      "file": "crash.wav",
+      "seconds": 0.4,
+      "bytes": 35324,
+      "sha256": "01b3a3675a2d1d2fcc90fd5a94922ad56da9e3816b812a63b65b37f078e39ec2",
+      "description": "Gentle descending thud with a short noise burst."
+    }
+  ]
+}

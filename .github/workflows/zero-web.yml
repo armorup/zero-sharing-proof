@@ -1,0 +1,82 @@
+name: Publish Zero game
+run-name: Zero web ${{ inputs.source_sha }}
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Reviewed source commit
+        required: true
+        type: string
+      release_id:
+        description: Temporary draft release ID
+        required: true
+        type: string
+      stage_tag:
+        description: Exact temporary draft name
+        required: true
+        type: string
+      asset_id:
+        description: Exact locally built asset ID
+        required: true
+        type: string
+      profile_sha256:
+        description: Local compiler and compatibility profile digest
+        required: true
+        type: string
+      bundle_sha256:
+        description: Exact local bundle digest
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: zero-pages
+  cancel-in-progress: false
+jobs:
+  stage:
+    if: github.ref == 'refs/heads/main' && inputs.source_sha == github.sha
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      ZERO_SOURCE_SHA: ${{ inputs.source_sha }}
+      ZERO_RELEASE_ID: ${{ inputs.release_id }}
+      ZERO_STAGE_TAG: ${{ inputs.stage_tag }}
+      ZERO_ASSET_ID: ${{ inputs.asset_id }}
+      ZERO_PROFILE_SHA256: ${{ inputs.profile_sha256 }}
+      ZERO_BUNDLE_SHA256: ${{ inputs.bundle_sha256 }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ inputs.source_sha }}
+          sparse-checkout: .zero-web
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Validate the locally built app
+        id: export
+        run: node .zero-web/run.cjs
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: ${{ steps.export.outputs.site }}
+          retention-days: 1
+      - name: Remove temporary app bundle
+        if: always()
+        env:
+          ZERO_CLEANUP: 'true'
+        run: node .zero-web/run.cjs
+  deploy:
+    needs: stage
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+        id: deployment

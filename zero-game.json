@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "kind": "game",
-  "slug": "hello-game",
+  "slug": "sky-hop",
   "version": "0.1.1",
-  "title": "Zero maintainer sharing proof",
-  "description": "Maintainer-owned Hello world fixture for verifying immutable game source sharing. This is not a student submission or gameplay review.",
+  "title": "Sky Hop",
+  "description": "Maintainer-owned Sky Hop test for ordinary Java, WebFX, and exact local-build publishing.",
   "license": "MIT",
-  "controls": "Use Run App after opening the project. No game controls in this minimal fixture."
+  "controls": "Space or click to flap; P pauses; R restarts; M mutes."
 }
