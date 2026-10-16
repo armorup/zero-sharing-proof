@@ -3,3 +3,6 @@
 .DS_Store
 
 /.zero/
+
+# Generated browser export
+/.zero/web-export/

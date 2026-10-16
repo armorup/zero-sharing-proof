@@ -6,10 +6,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import zero.ImageRegion;
 import zero.SpriteAnimation;
-import zero.SketchApp;
+import zero.GameApp;
 
 /** Flappy Bird style game: Zero helpers, explicit updates, ordinary objects. */
-public class Main extends SketchApp {
+public class Main extends GameApp {
     final Game game = new Game();
     private Image skyImage;
     private ImageRegion pipeArt;

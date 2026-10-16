@@ -1,6 +1,6 @@
 import zero.Music;
 import zero.Sound;
-import zero.SimpleApp;
+import zero.App;
 import javafx.scene.media.MediaException;
 
 /** Game-specific sound rules. Zero loads and cleans up the underlying audio. */
@@ -12,7 +12,7 @@ public final class GameAudio {
     private boolean muted, playing, failed;
 
     /** Missing files still fail clearly; a native media failure permits silent play. */
-    public static GameAudio load(SimpleApp app) {
+    public static GameAudio load(App app) {
         try {
             return new GameAudio(app.loadSound("/audio/flap.wav"), app.loadSound("/audio/score.wav"),
                     app.loadSound("/audio/crash.wav"), app.loadMusic("/audio/sky-hop-loop.wav"));
